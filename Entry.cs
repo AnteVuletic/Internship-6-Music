@@ -70,9 +70,7 @@ namespace Music
                 var songsOnAlbum = from alb in Albums
                     join albSng in SongsOnAlbum on alb.ID_Album equals albSng.FK_Album
                     join sng in Songs on albSng.FK_Song equals sng.ID_Song into allSongsOnAlbums
-                    group allSongsOnAlbums by alb 
-                    into allSongsOnAlbumByAlbum 
-                    select allSongsOnAlbumByAlbum;
+                    group allSongsOnAlbums by alb;
                 foreach (var byAlbum in songsOnAlbum)
                 {
                     Console.WriteLine($"Album:{byAlbum.Key.Name} Duration of all songs: {byAlbum.Sum(songs => songs.Sum(song => song.Duration.Minutes + song.Duration.Seconds/60))} minutes");
